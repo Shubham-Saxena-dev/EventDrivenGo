@@ -30,7 +30,7 @@ func (q queue) CreateQueue() amqp.Queue {
 		false,
 		false,
 		nil)
-	failOnError(err, "Failed to connect/create queue")
+	failOnError(err, "Failed to connect/create queues")
 	return qu
 }
 
