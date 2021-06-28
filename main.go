@@ -14,8 +14,8 @@ import (
 )
 
 const (
-	Database   = "goMongo"
-	Collection = "account"
+	Database   = "goMongos"
+	Collection = "accounts"
 	MongoDbUrl = "mongodb://mongodb:27017/"
 )
 
