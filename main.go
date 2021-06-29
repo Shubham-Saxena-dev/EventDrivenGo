@@ -6,6 +6,7 @@ import (
 	"GoEvents/routes"
 	"GoEvents/service"
 	"context"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 	"github.com/streadway/amqp"
@@ -31,7 +32,7 @@ var (
 
 func main() {
 	log.Info("Hi, this is event publishing and consuming")
-	configQueue()
+	configMessagingQueue()
 	initDatabase()
 	createServer()
 }
@@ -56,8 +57,9 @@ func initializeLayers() {
 	controller = controllers.NewController(serv)
 }
 
-func configQueue() {
-	conn, err := amqp.Dial("amqp://guest@localhost:5672")
+func configMessagingQueue() {
+	var err error
+	conn, err = amqp.Dial("amqp://guest@localhost:5672")
 	failOnError(err, "Failed to connect to rabbit mq")
 	ch, err = conn.Channel()
 	failOnError(err, "Failed to create channel")
@@ -65,16 +67,21 @@ func configQueue() {
 
 func initDatabase() {
 	log.Info("Connecting to datastore")
-	clientOptions := options.Client().ApplyURI(MongoDbUrl)
-	client, err := mongo.NewClient(clientOptions)
+	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
+
+	client, err := mongo.Connect(context.TODO(), clientOptions)
+
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	err = client.Connect(ctx)
+	err = client.Ping(context.TODO(), nil)
+
 	if err != nil {
-		failOnError(err, "Unable to establish connection with MongoDB")
+		log.Fatal(err)
 	}
+
+	fmt.Println("Connected to MongoDB!")
 
 	collection = client.Database(Database).Collection(Collection)
 }

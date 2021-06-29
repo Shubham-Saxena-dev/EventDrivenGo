@@ -7,8 +7,8 @@ import (
 
 type Service interface {
 	GetAllEmployees() ([]requests.AccountCreateRequest, error)
-	GetAccount() (requests.AccountCreateRequest, error)
-	CreateAccount() error
+	GetAccount(id string) (requests.AccountCreateRequest, error)
+	CreateAccount(requests.AccountCreateRequest) (requests.AccountCreateRequest, error)
 	UpdateAccount() error
 	DeleteAccount() error
 }
@@ -25,12 +25,12 @@ func (s *service) GetAllEmployees() ([]requests.AccountCreateRequest, error) {
 	return s.repo.GetAllEmployees()
 }
 
-func (s *service) GetAccount() (requests.AccountCreateRequest, error) {
-	panic("implement me")
+func (s *service) GetAccount(id string) (requests.AccountCreateRequest, error) {
+	return s.repo.GetAccount(id)
 }
 
-func (s *service) CreateAccount() error {
-	panic("implement me")
+func (s *service) CreateAccount(request requests.AccountCreateRequest) (requests.AccountCreateRequest, error) {
+	return s.repo.CreateAccount(request)
 }
 
 func (s *service) UpdateAccount() error {

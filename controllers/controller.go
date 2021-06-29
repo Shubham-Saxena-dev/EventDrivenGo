@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"GoEvents/requests"
 	"GoEvents/service"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
@@ -37,13 +38,29 @@ func (c controller) GetAllEmployees() gin.HandlerFunc {
 
 func (c controller) GetAccount() gin.HandlerFunc {
 	return func(context *gin.Context) {
-		panic("implement me")
+		id := context.Param("id")
+		response, err := c.service.GetAccount(id)
+
+		if err != nil {
+			handleError(context, err, http.StatusInternalServerError)
+		}
+		context.JSON(http.StatusOK, response)
 	}
 }
 
 func (c controller) CreateAccount() gin.HandlerFunc {
 	return func(context *gin.Context) {
-		panic("implement me")
+		var createRequest requests.AccountCreateRequest
+		if err := context.ShouldBindJSON(&createRequest); err != nil {
+			handleError(context, err, http.StatusBadRequest)
+			return
+		}
+		response, err := c.service.CreateAccount(createRequest)
+		if err != nil {
+			handleError(context, err, http.StatusInternalServerError)
+			return
+		}
+		context.JSON(http.StatusOK, response)
 	}
 }
 func (c controller) UpdateAccount() gin.HandlerFunc {
