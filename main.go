@@ -52,7 +52,7 @@ func createServer() {
 }
 
 func initializeLayers() {
-	repo = repository.NewMongoRepository(collection, ctx, conn, ch)
+	repo = repository.NewMongoRepository(collection, ctx, ch)
 	serv = service.NewRepository(repo)
 	controller = controllers.NewController(serv)
 }

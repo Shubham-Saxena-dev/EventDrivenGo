@@ -25,6 +25,6 @@ func (r route) RegisterHandlers() {
 	r.engine.GET("/account", r.controller.GetAllEmployees())
 	r.engine.GET("/account/:id", r.controller.GetAccount())
 	r.engine.POST("/account", r.controller.CreateAccount())
-	r.engine.PATCH("/account/:id", r.controller.UpdateAccount())
+	r.engine.PUT("/account/:id", r.controller.UpdateAccount())
 	r.engine.DELETE("/account/:id", r.controller.DeleteAccount())
 }

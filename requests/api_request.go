@@ -20,6 +20,6 @@ type Department struct {
 
 type AccountUpdateRequest struct {
 	Name    string     `json:"name" binding:"required,min=2,max=100"`
-	Zipcode int32      `json:"zip_code" binding:"required,min=2,max=10"`
+	Zipcode int32      `json:"zip_code" binding:"required,min=2"`
 	Dept    Department `json:"dept" binding:"required"`
 }

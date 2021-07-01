@@ -10,15 +10,13 @@ type Queue interface {
 }
 
 type queue struct {
-	conn *amqp.Connection
 	ch   *amqp.Channel
 	name string
 }
 
-func NewQueue(name string, conn *amqp.Connection, ch *amqp.Channel) Queue {
+func NewQueue(name string, ch *amqp.Channel) Queue {
 	return &queue{
 		name: name,
-		conn: conn,
 		ch:   ch,
 	}
 }
