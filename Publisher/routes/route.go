@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"GoEvents/controllers"
+	"GoEvents/Publisher/controllers"
 	"github.com/gin-gonic/gin"
 )
 

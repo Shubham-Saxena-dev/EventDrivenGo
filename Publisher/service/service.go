@@ -1,8 +1,8 @@
 package service
 
 import (
-	"GoEvents/repository"
-	"GoEvents/requests"
+	"GoEvents/Publisher/repository"
+	"GoEvents/Publisher/requests"
 )
 
 type Service interface {

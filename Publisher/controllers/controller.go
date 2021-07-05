@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"GoEvents/requests"
-	"GoEvents/service"
+	"GoEvents/Publisher/requests"
+	"GoEvents/Publisher/service"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 	"net/http"

@@ -1,8 +1,8 @@
 package repository
 
 import (
-	"GoEvents/queue"
-	"GoEvents/requests"
+	"GoEvents/Publisher/queue"
+	"GoEvents/Publisher/requests"
 	"context"
 	"encoding/json"
 	"github.com/streadway/amqp"

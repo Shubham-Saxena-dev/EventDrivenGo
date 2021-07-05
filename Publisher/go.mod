@@ -1,4 +1,4 @@
-module GoEvents
+module GoEvents/Publisher
 
 go 1.14
 

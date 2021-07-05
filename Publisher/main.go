@@ -1,10 +1,10 @@
 package main
 
 import (
-	"GoEvents/controllers"
-	"GoEvents/repository"
-	"GoEvents/routes"
-	"GoEvents/service"
+	"GoEvents/Publisher/controllers"
+	"GoEvents/Publisher/repository"
+	"GoEvents/Publisher/routes"
+	"GoEvents/Publisher/service"
 	"context"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
@@ -31,7 +31,7 @@ var (
 )
 
 func main() {
-	log.Info("Hi, this is event publishing and consuming")
+	log.Info("Hi, this is event publishing")
 	configMessagingQueue()
 	initDatabase()
 	createServer()
